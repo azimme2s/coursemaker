@@ -13,14 +13,14 @@
 
         name: "storyboard",
 
-        ccm: "https://ccmjs.github.io/ccm/versions/ccm-20.1.0.js",
+        ccm: "https://ccmjs.github.io/ccm/versions/ccm-20.1.0.min.js",
 
         config: {
             "html": {
-                "storyboard":[ 
+                "storyboard": [
                     {
-                        "tag":"div",
-                        "class":"legend",
+                        "tag": "div",
+                        "class": "legend",
                         "inner": {
                             "tag": "h2",
                             "class": "legend-headline",
@@ -28,9 +28,9 @@
                         }
                     },
                     {
-                    "tag": "div",
-                    "class": "storyboard",
-                    "inner": {
+                        "tag": "div",
+                        "class": "storyboard",
+                        "inner": {
                             "tag": "ul",
                             "class": "timeline",
                             "inner": []
@@ -65,17 +65,17 @@
                 this.ccm.helper.setContent(this.element, this.ccm.helper.html(this.html.storyboard));
                 const legendWrapper = this.element.querySelector(".legend");
                 this.legend.forEach(element => {
-                   const taskLegendIcon =  document.createElement("div");
-                   taskLegendIcon.className = "legends-icon"
-                   taskLegendIcon.style.backgroundColor = element.color;
+                    const taskLegendIcon = document.createElement("div");
+                    taskLegendIcon.className = "legends-icon"
+                    taskLegendIcon.style.backgroundColor = element.color;
 
-                   
-                   const taskLegendTitle =  document.createElement("span");
-                   taskLegendTitle.className = "legends-title"
-                   taskLegendTitle.innerHTML = element.difficulty;
 
-                   legendWrapper.appendChild(taskLegendIcon);
-                   legendWrapper.appendChild(taskLegendTitle);
+                    const taskLegendTitle = document.createElement("span");
+                    taskLegendTitle.className = "legends-title"
+                    taskLegendTitle.innerHTML = element.difficulty;
+
+                    legendWrapper.appendChild(taskLegendIcon);
+                    legendWrapper.appendChild(taskLegendTitle);
                 });
                 await this.renderMilestones();
                 await this.renderTasks();
@@ -93,21 +93,17 @@
                     });
 
                 this.milestones.forEach((milestone, index) => {
-                    const milestoneElement = document.createElement("li")
-                    if (milestone.conditions.level <= this.player.level && this.checkDoneTasks(milestone.conditions.tasksDone, this.taskdone)) {
-                        milestoneElement.className = 'event';
-                        milestone.show = true;
-                        timeline.style.borderLeftColor = '#a6afc1';
-                    }
-                    milestoneElement.className = 'event-grey';
+                    const milestoneElement = document.createElement("li");
+
+                    milestoneElement.className = 'event';
+                    milestone.show = true;
+
                     if (index === 0) {
                         milestoneElement.setAttribute('data-date', 'Start')
-                    }
-                    else if( index === this.milestones.length - 1) {
+                    } else if (index === this.milestones.length - 1) {
                         milestoneElement.setAttribute('data-date', 'Ziel')
-                    }
-                    else {
-                        milestoneElement.setAttribute('data-date', `Meilenstein${index+1}`)
+                    } else {
+                        milestoneElement.setAttribute('data-date', `Meilenstein${index + 1}`)
                     }
                     const taskContainer = document.createElement("div");
                     taskContainer.className = 'task-container';
@@ -123,7 +119,7 @@
                 if (!Array.isArray(_arr1) || !Array.isArray(_arr2))
                     return false;
 
-                if (_arr1.length === 0){
+                if (_arr1.length === 0) {
                     return true;
                 }
                 let arr1 = _arr1.concat().sort();
@@ -194,7 +190,7 @@
                     taskField.appendChild(testButton);
                 } else {
                     task.task.task.onfinish = currentTask => {
-                        if(currentTask.getValue().correct >= task.task.correct){
+                        if (currentTask.getValue().correct >= task.task.correct) {
                             if (!task.taskDone) {
                                 this.parent.setProgress(task.exp).then(result => {
                                     this.parent.comparegame.addGame(result);

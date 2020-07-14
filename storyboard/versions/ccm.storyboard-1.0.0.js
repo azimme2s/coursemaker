@@ -13,7 +13,7 @@
 
         name: "storyboard",
 
-        ccm: "https://ccmjs.github.io/ccm/versions/ccm-20.1.0.js",
+        ccm: "https://ccmjs.github.io/ccm/versions/ccm-20.1.0.min.js",
 
         config: {
             "html": {
@@ -94,10 +94,11 @@
 
                 this.milestones.forEach((milestone, index) => {
                     const milestoneElement = document.createElement("li")
+                    console.log(this.checkDoneTasks(milestone.conditions.tasksDone, this.taskdone));
                     if (milestone.conditions.level <= this.player.level && this.checkDoneTasks(milestone.conditions.tasksDone, this.taskdone)) {
                         milestoneElement.className = 'event';
                         milestone.show = true;
-                        timeline.style.borderLeftColor = '#a6afc1';
+                        timeline.style.borderLeft = '4px solid #a6afc1';
                     }
                     milestoneElement.className = 'event-grey';
                     if (index === 0) {
