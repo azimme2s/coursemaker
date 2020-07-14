@@ -13,7 +13,7 @@
 
         name: "coursemaker",
 
-        ccm: "https://ccmjs.github.io/ccm/ccm.js",
+        ccm: "https://ccmjs.github.io/ccm/versions/ccm-20.1.0.js",
 
         config: {
             "html": {
